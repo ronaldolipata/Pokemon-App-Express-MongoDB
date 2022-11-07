@@ -1,0 +1,26 @@
+// Use the database
+use('pokemons_db');
+
+// Show all Pokemons
+db.pokemons.find().toArray();
+
+// Show Rate-Limited number of Pokemons
+db.pokemons.find().skip(3).limit(3);
+
+// Show a Pokemon that matches the name
+db.pokemons.aggregate([
+  {
+    $match: {
+      name: 'Magikarp'
+    }
+  }
+])
+
+// Show a Pokemon that matches the type
+db.pokemons.aggregate([
+  {
+    $match: {
+      type: 'Water'
+    }
+  }
+])
