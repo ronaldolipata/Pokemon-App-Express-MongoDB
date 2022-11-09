@@ -1,10 +1,7 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import Pokemon from '../models/pokemons.js';
+import Pokemon from '../models/Pokemon.js';
 
 const router = express.Router();
-
-mongoose.connect('mongodb://localhost:27017/pokemons_db');
 
 router.get('/', async (req, res) => {
   const limit = req.query.limit || 3;
@@ -15,6 +12,7 @@ router.get('/', async (req, res) => {
       { $limit: parseInt(limit) },
       { $skip: parseInt(offset) },
     ]);
+
     return res.status(200).send(data);
   } catch (error) {
     console.log(error);
